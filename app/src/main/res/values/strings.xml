@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Carpooli</string>
+    <string name="terms"><![CDATA[Terms of Use & Privacy Policy]]></string>
+    <string name="app_desc">"Share trips,\n experiences\n and moments."</string>
+</resources>
