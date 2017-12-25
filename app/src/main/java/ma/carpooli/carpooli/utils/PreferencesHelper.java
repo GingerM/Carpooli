@@ -17,6 +17,7 @@ public class PreferencesHelper {
     public static final String ARABIC_LANGUAGE_CODE = "ar";
     public static final String FRENCH_LANGUAGE_CODE = "fr";
     public static final String HASLAUNCHEDONCE = "HasLaunchedOnce";
+    public static final String FIREBASEHTTPURL = "https://us-central1-aui-carpo.cloudfunctions.net/";
 
     private String deviceID;
 
