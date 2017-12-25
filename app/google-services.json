@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889686886325",
+    "firebase_url": "https://aui-carpo.firebaseio.com",
+    "project_id": "aui-carpo",
+    "storage_bucket": "aui-carpo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889686886325:android:25b377dd1a0ba965",
+        "android_client_info": {
+          "package_name": "ma.carpooli.carpooli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889686886325-5cllblmsb33d00sdoaek0ru227cirtpv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ma.carpooli.carpooli",
+            "certificate_hash": "44f24bfe4d4f475779129be37434cbb5d72a939a"
+          }
+        },
+        {
+          "client_id": "889686886325-dfs95aperlijf1qks1cj98k979llk4ce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtdHja1OVkaffu6oPUBSDn4Ua1ntPlJ2E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889686886325-dfs95aperlijf1qks1cj98k979llk4ce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
