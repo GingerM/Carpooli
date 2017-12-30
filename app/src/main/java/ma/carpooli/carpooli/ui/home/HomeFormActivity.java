@@ -50,12 +50,14 @@ public class HomeFormActivity extends AppCompatActivity {
 
     DatePickerDialog.OnDateSetListener dateDialog;
 
-    CarpooliApplication carpooliApplication = (CarpooliApplication) getApplication();
+    CarpooliApplication carpooliApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_form);
+
+        carpooliApplication = (CarpooliApplication) getApplication();
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("publish");
@@ -174,10 +176,9 @@ public class HomeFormActivity extends AppCompatActivity {
                                 String date = lift.child("date").getValue(String.class);
 
                                 carpooliApplication.ld.add(new LiftData(pickupLocation, dropOffLocation, seats, date));
-
-                                Intent i = new Intent(HomeFormActivity.this, LiftSearchResult.class);
-                                startActivity(i);
                             }
+                            Intent i = new Intent(HomeFormActivity.this, LiftSearchResult.class);
+                            startActivity(i);
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {

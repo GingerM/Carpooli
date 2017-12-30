@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context="ma.carpooli.carpooli.ui.liftsearchresult.LiftSearchResult">
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/card_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <!-- A CardView that contains a TextView -->
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="10dp" />
 </android.support.constraint.ConstraintLayout>

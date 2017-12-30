@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 public class CarpooliApplication extends Application {
 
-    public ArrayList<LiftData> ld = new ArrayList<LiftData>();
+    public ArrayList<LiftData> ld;
 
     @Override
     public void onCreate() {
@@ -25,6 +25,8 @@ public class CarpooliApplication extends Application {
 
         PreferencesHelper.init(this);
         PreferencesHelper.getInstance().initDeviceId(this);
+
+        ld = new ArrayList<>();
 
     /*if (LeakCanary.isInAnalyzerProcess(this)) {
       // This process is dedicated to LeakCanary for heap analysis.
