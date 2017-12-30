@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 
+import java.util.ArrayList;
+
 import io.fabric.sdk.android.Fabric;
 import ma.carpooli.carpooli.utils.PreferencesHelper;
 import timber.log.Timber;
@@ -13,6 +15,9 @@ import timber.log.Timber;
  */
 
 public class CarpooliApplication extends Application {
+
+    public ArrayList<LiftData> ld = new ArrayList<LiftData>();
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="cities">
+        <item>Marrakesh</item>
+        <item>Tangier</item>
+        <item>Temara</item>
+        <item>Skhirat</item>
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Kenitra</item>
+        <item>Sidi Yahia az Za'er</item>
+        <item>Fes</item>
+        <item>Tarfaya</item>
+        <item>Meknes</item>
+        <item>Agadir</item>
+        <item>Khouribga</item>
+        <item>Salé</item>
+        <item>Tétouan</item>
+        <item>Touissite</item>
+        <item>Oujda</item>
+        <item>Nador</item>
+        <item>Erfoud</item>
+        <item>Mehediyah</item>
+        <item>Khemisset</item>
+        <item>Oulad Teima</item>
+        <item>Mohammedia</item>
+        <item>El Gara</item>
+        <item>Berrechid</item>
+        <item>Safi</item>
+        <item>Benguerir</item>
+        <item>Tiznit</item>
+        <item>Sidi Slimane</item>
+        <item>Sefrou</item>
+        <item>Ifrane de l'Anti-Atlas</item>
+        <item>El Hajeb</item>
+        <item>Larache</item>
+        <item>Ksar el Kebir</item>
+        <item>M'dik</item>
+        <item>Tan-Tan</item>
+        <item>Al Hoceima</item>
+        <item>Ouazzane</item>
+        <item>Settat</item>
+        <item>Tiflet</item>
+        <item>Tahala</item>
+        <item>El Jadida</item>
+        <item>Sidi Bennour</item>
+        <item>Oulad Afourer</item>
+        <item>Beni Mellal</item>
+        <item>Fkih Ben Salah</item>
+        <item>Oued Zem</item>
+        <item>Deroua</item>
+        <item>Assa</item>
+        <item>Ait Melloul</item>
+        <item>Taza</item>
+        <item>Mansour</item>
+    </array>
+
+    <array name="passengerNum">
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+    </array>
+</resources>

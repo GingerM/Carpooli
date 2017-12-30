@@ -16,4 +16,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="country_select_lbl">Where are you travelling</string>
+    <string name="country_select_hint">Select your destination</string>
+
 </resources>

@@ -2,15 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     android:weightSum="4">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.2"
-        android:background="@drawable/topography_background">
+        android:layout_height="55dp"
+        android:weightSum="2">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:src="@drawable/account_icon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.75" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -20,63 +32,54 @@
             android:layout_margin="20dp"
             android:src="@drawable/logo_activated" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.75" />
+
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:src="@drawable/account_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/topography_background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/init_path" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="Roboto"
-            android:lineSpacingMultiplier="1.18"
-            android:padding="5dp"
-            android:text="@string/app_desc"
+            android:gravity="center"
+            android:text="@string/country_select_lbl"
             android:textColor="#FF000000"
-            android:textSize="39sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:layout_weight="0.8"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/get_started"
+        <Spinner
+            android:id="@+id/country_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/button_background"
-            android:text="Get Started"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@android:color/background_light"
+            android:hint="@string/country_select_hint"
+            android:textColorHint="#05ab9a" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:lineSpacingMultiplier="1.38"
-            android:text="By using Carpooli, you agree to our"
-            android:textColor="#FF818181"
-            android:textSize="13sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:lineSpacingMultiplier="1.38"
-            android:text="@string/terms"
-            android:textColor="#FF818181"
-            android:textSize="13sp" />
     </LinearLayout>
 
 </LinearLayout>

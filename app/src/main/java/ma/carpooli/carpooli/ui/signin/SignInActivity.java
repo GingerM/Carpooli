@@ -55,6 +55,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 
 import ma.carpooli.carpooli.R;
+import ma.carpooli.carpooli.ui.home.HomeActivity;
 import ma.carpooli.carpooli.ui.init.InitAppActivity;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -232,7 +233,7 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
 
-                        Intent i = new Intent(SignInActivity.this, SignInActivity.class);
+                        Intent i = new Intent(SignInActivity.this, HomeActivity.class);
                         String email = user.getEmail();
                         i.putExtra("EMAIL", email);
 

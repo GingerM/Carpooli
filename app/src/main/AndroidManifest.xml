@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ma.carpooli.carpooli">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,24 +19,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c9c1c7ea7875e8fdd27f76fc4a196bd9ab2fa991" />
 
-        <activity android:name=".ui.splashscreen.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.splashscreen.SplashScreen" />
         <activity android:name=".ui.init.InitAppActivity" />
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity
             android:name=".ui.signin.SignInActivity"
             android:label="@string/title_activity_sign_in" />
         <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.home.HomeFormActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.liftsearchresult.LiftSearchResult"></activity>
     </application>
 
 </manifest>
