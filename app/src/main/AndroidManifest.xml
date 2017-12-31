@@ -31,15 +31,18 @@
         <activity
             android:name=".ui.signin.SignInActivity"
             android:label="@string/title_activity_sign_in" />
-        <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.home.HomeFormActivity">
+
+        </activity>
+        <activity android:name=".ui.liftsearchresult.LiftSearchResult" />
+        <activity android:name=".ui.signup.AddProfilePictureActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.liftsearchresult.LiftSearchResult"></activity>
     </application>
 
 </manifest>
