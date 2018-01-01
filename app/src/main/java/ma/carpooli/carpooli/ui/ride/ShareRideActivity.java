@@ -1,18 +1,14 @@
-package ma.carpooli.carpooli.ui.home;
-
-import ma.carpooli.carpooli.CarpooliApplication;
-import ma.carpooli.carpooli.LiftData;
-import ma.carpooli.carpooli.R;
-import ma.carpooli.carpooli.ui.init.InitAppActivity;
-import ma.carpooli.carpooli.ui.liftsearchresult.LiftSearchResult;
-import ma.carpooli.carpooli.ui.signin.SignInActivity;
+package ma.carpooli.carpooli.ui.ride;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,8 +16,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,14 +28,23 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class HomeFormActivity extends AppCompatActivity {
+import ma.carpooli.carpooli.CarpooliApplication;
+import ma.carpooli.carpooli.LiftData;
+import ma.carpooli.carpooli.R;
+import ma.carpooli.carpooli.ui.home.HomeFormActivity;
+import ma.carpooli.carpooli.ui.liftsearchresult.LiftSearchResult;
+
+public class ShareRideActivity extends AppCompatActivity {
 
     Spinner dest_from, dest_to, passenger_num;
-    EditText pick_date;
+    EditText pick_date, ride_price;
+    static EditText pick_time;
 
-    String fromCity, toCity, passengerNum, date;
+    String fromCity, toCity, passengerNum, date, time;
 
-    Button search_carpoo;
+    Button search_ride;
+
+    Double price;
 
     int fromCheck, toCheck, passCheck = 0;
 
@@ -55,20 +60,22 @@ public class HomeFormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_form);
+        setContentView(R.layout.activity_share_ride);
 
         carpooliApplication = (CarpooliApplication) getApplication();
 
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("publish");
+        myRef = database.getReference("lifts");
 
         dest_from = (Spinner) findViewById(R.id.dest_from);
         dest_to = (Spinner) findViewById(R.id.dest_to);
 
+        ride_price = (EditText) findViewById(R.id.ride_price);
+        pick_time = (EditText) findViewById(R.id.pick_time);
         pick_date = (EditText) findViewById(R.id.pick_date);
         passenger_num = (Spinner) findViewById(R.id.passenger_num);
 
-        search_carpoo = (Button) findViewById(R.id.search_carpoo);
+        search_ride = (Button) findViewById(R.id.search_ride);
 
         ArrayAdapter<CharSequence> adapterCities = ArrayAdapter.createFromResource(this,
                 R.array.cities, android.R.layout.simple_spinner_item);
@@ -148,42 +155,29 @@ public class HomeFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(HomeFormActivity.this, dateDialog, myCalendar
+                new DatePickerDialog(ShareRideActivity.this, dateDialog, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-        search_carpoo.setOnClickListener(new View.OnClickListener() {
+        search_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 date = pick_date.getText().toString();
+                time = pick_time.getText().toString();
+                price = Double.parseDouble(ride_price.getText().toString());
+
                 boolean cancel = false;
 
                 // Check for a valid password, if the user entered one.
-                if (TextUtils.isEmpty(passengerNum) || TextUtils.isEmpty(toCity) || TextUtils.isEmpty(fromCity) || TextUtils.isEmpty(date)) {
+                if (TextUtils.isEmpty(passengerNum) || TextUtils.isEmpty(toCity) || TextUtils.isEmpty(fromCity) || TextUtils.isEmpty(date) || TextUtils.isEmpty(time) || TextUtils.isEmpty(ride_price.getText().toString())){
                     cancel = true;
                 }
 
                 if(!cancel){
-                    myRef.orderByChild("pickupLocation").equalTo(fromCity).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            for (DataSnapshot lift: snapshot.getChildren()) {
-                                String pickupLocation = lift.child("pickupLocation").getValue(String.class);
-                                String dropOffLocation = lift.child("dropOffLocation").getValue(String.class);
-                                Integer seats = lift.child("seats").getValue(Integer.class);
-                                String date = lift.child("date").getValue(String.class);
-
-                                carpooliApplication.ld.add(lift.getValue(LiftData.class));
-                            }
-                            Intent i = new Intent(HomeFormActivity.this, LiftSearchResult.class);
-                            startActivity(i);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                        }
-                    });
+                    LiftData liftData = new LiftData(fromCity, "-KwfQmBUTthfTocTuair", price, time, toCity, Integer.parseInt(passengerNum), date);
+                    myRef.push().setValue(liftData);
                 }
             }
         });
@@ -194,5 +188,30 @@ public class HomeFormActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
 
         pick_date.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    public void showTimePickerDialog(View v) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+    public static class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity()));
+        }
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            pick_time.setText(hourOfDay + ":" + minute);
+        }
     }
 }

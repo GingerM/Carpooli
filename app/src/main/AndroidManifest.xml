@@ -32,11 +32,13 @@
             android:name=".ui.signin.SignInActivity"
             android:label="@string/title_activity_sign_in" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.home.HomeFormActivity">
+        <activity android:name=".ui.home.HomeFormActivity" />
+        <activity android:name=".ui.liftsearchresult.LiftSearchResult" />
+        <activity android:name=".ui.signup.AddProfilePictureActivity"></activity>
+        <activity android:name=".ui.signup.PhoneNumberActivity">
 
         </activity>
-        <activity android:name=".ui.liftsearchresult.LiftSearchResult" />
-        <activity android:name=".ui.signup.AddProfilePictureActivity">
+        <activity android:name=".ui.ride.ShareRideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
