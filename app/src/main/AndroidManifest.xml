@@ -25,7 +25,13 @@
             android:name="io.fabric.ApiKey"
             android:value="c9c1c7ea7875e8fdd27f76fc4a196bd9ab2fa991" />
 
-        <activity android:name=".ui.splashscreen.SplashScreen" />
+        <activity android:name=".ui.splashscreen.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.init.InitAppActivity" />
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity
@@ -34,17 +40,11 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.home.HomeFormActivity" />
         <activity android:name=".ui.liftsearchresult.LiftSearchResult" />
-        <activity android:name=".ui.signup.AddProfilePictureActivity"></activity>
-        <activity android:name=".ui.signup.PhoneNumberActivity">
-
-        </activity>
-        <activity android:name=".ui.ride.ShareRideActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.signup.AddProfilePictureActivity" />
+        <activity android:name=".ui.signup.PhoneNumberActivity" />
+        <activity android:name=".ui.ride.ShareRideActivity" />
+        <activity android:name=".ui.signup.PhoneNumberVerificationActivity" />
+        <activity android:name=".ui.signup.UserEmailSignupActivity"></activity>
     </application>
 
 </manifest>

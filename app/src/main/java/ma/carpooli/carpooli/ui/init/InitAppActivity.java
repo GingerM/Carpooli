@@ -8,7 +8,7 @@ import android.view.View;
 import ma.carpooli.carpooli.R;
 import ma.carpooli.carpooli.ui.base.BaseActivity;
 import ma.carpooli.carpooli.ui.signin.SignInActivity;
-import ma.carpooli.carpooli.ui.signup.SignUpActivity;
+import ma.carpooli.carpooli.ui.signup.PhoneNumberActivity;
 
 /**
  * Created by MouadS on 19/11/2017.
@@ -27,7 +27,7 @@ public class InitAppActivity extends BaseActivity {
                 findViewById(R.id.create_account).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(InitAppActivity.this, SignUpActivity.class));
+                        startActivity(new Intent(InitAppActivity.this, PhoneNumberActivity.class));
                     }
                 });
                 findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {

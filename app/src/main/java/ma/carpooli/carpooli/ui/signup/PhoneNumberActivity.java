@@ -1,5 +1,6 @@
 package ma.carpooli.carpooli.ui.signup;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,9 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import ma.carpooli.carpooli.CarpooliApplication;
 import ma.carpooli.carpooli.R;
+import ma.carpooli.carpooli.ui.init.InitAppActivity;
 
 public class PhoneNumberActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -64,10 +67,14 @@ public class PhoneNumberActivity extends AppCompatActivity implements View.OnCli
     private Button mResendButton;
     private Button mSignOutButton;
 
+    private CarpooliApplication carpooliApplication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_phone_number);
+
+            carpooliApplication = (CarpooliApplication) getApplication();
 
             // Restore instance state
             if (savedInstanceState != null) {
@@ -321,7 +328,9 @@ public class PhoneNumberActivity extends AppCompatActivity implements View.OnCli
             // Set the verification text based on the credential
             if (cred != null) {
             if (cred.getSmsCode() != null) {
-            mVerificationField.setText(cred.getSmsCode());
+                mVerificationField.setText(cred.getSmsCode());
+                carpooliApplication.userData.setVerificationCode(cred.getSmsCode());
+                startActivity(new Intent(PhoneNumberActivity.this, PhoneNumberVerificationActivity.class));
             } else {
             mVerificationField.setText("R.string.instant_validation");
             }
@@ -344,18 +353,22 @@ public class PhoneNumberActivity extends AppCompatActivity implements View.OnCli
 
             mStatusText.setText("R.string.signed_out");
             } else {
-            // Signed in
-            mPhoneNumberViews.setVisibility(View.GONE);
-            mSignedInViews.setVisibility(View.VISIBLE);
+                // Signed in
+                mPhoneNumberViews.setVisibility(View.GONE);
+                mSignedInViews.setVisibility(View.VISIBLE);
 
-            enableViews(mPhoneNumberField, mVerificationField);
-            mPhoneNumberField.setText(null);
-            mVerificationField.setText(null);
+                enableViews(mPhoneNumberField, mVerificationField);
+                mPhoneNumberField.setText(null);
+                mVerificationField.setText(null);
 
-            mStatusText.setText("R.string.signed_in");
-            mDetailText.setText("user.getUid" + user.getUid());
+                mStatusText.setText("R.string.signed_in");
+                if(!user.getUid().isEmpty()){
+                    carpooliApplication.userData.setAuthUId(user.getUid());
+                    startActivity(new Intent(PhoneNumberActivity.this, AddProfilePictureActivity.class));
+                }
+
             }
-            }
+        }
 
     private boolean validatePhoneNumber() {
             String phoneNumber = mPhoneNumberField.getText().toString();

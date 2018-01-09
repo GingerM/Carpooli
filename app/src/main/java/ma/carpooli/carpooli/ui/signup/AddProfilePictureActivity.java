@@ -27,7 +27,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import ma.carpooli.carpooli.CarpooliApplication;
 import ma.carpooli.carpooli.R;
+import ma.carpooli.carpooli.ui.init.InitAppActivity;
 import ma.carpooli.carpooli.utils.ImageUploadInfo;
 
 public class AddProfilePictureActivity extends AppCompatActivity {
@@ -48,22 +50,22 @@ public class AddProfilePictureActivity extends AppCompatActivity {
 
     // Creating StorageReference and DatabaseReference object.
     StorageReference storageReference;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
 
     // Image request code for onActivityResult() .
     int Image_Request_Code = 7;
 
     ProgressDialog progressDialog ;
 
+    private CarpooliApplication carpooliApplication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_profile_picture);
 
+        carpooliApplication = (CarpooliApplication) getApplication();
+
         storageReference = FirebaseStorage.getInstance().getReference(Storage_Path);
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("images");
 
         //Assign ID'S to button.
         ChooseButton = (Button)findViewById(R.id.ButtonChooseImage);
@@ -173,12 +175,9 @@ public class AddProfilePictureActivity extends AppCompatActivity {
 
                             @SuppressWarnings("VisibleForTests")
                             ImageUploadInfo imageUploadInfo = new ImageUploadInfo(TempImageName, taskSnapshot.getDownloadUrl().toString());
+                            carpooliApplication.userData.setImageUploadInfo(imageUploadInfo);
 
-                            // Getting image upload ID.
-                            String ImageUploadId = myRef.push().getKey();
-
-                            // Adding image upload id s child element into databaseReference.
-                            myRef.child(ImageUploadId).setValue(imageUploadInfo);
+                            startActivity(new Intent(AddProfilePictureActivity.this, UserEmailSignupActivity.class));
                         }
                     })
                     // If something goes wrong .

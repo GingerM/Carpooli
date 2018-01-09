@@ -255,7 +255,7 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@aui");
     }
 
     private boolean isPasswordValid(String password) {
